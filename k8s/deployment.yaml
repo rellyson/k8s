@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-basic-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rust-basic-api
+  template:
+    metadata:
+      labels:
+        app: rust-basic-api
+    spec:
+      containers:
+        - name: rust-basic-api
+          image: ghcr.io/rellyson/rust-basic-api:latest
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
